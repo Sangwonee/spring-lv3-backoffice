@@ -22,5 +22,6 @@ public class InstructorRegisterResponseDto {
         this.company = instructor.getCompany();
         this.phone = instructor.getPhone();
         this.introduction = instructor.getIntroduction();
+        this.adminId = instructor.getAdmin().getId();
     }
 }

@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class InstructorService {
     private final InstructorRepository instructorRepository;
     private final AdminRepository adminRepository;
-
     @Transactional
     public InstructorRegisterResponseDto registerInstructor(InstructorRegisterDto instructorRegisterDto, String email) {
         Admin admin = adminRepository.findByEmail(email)
