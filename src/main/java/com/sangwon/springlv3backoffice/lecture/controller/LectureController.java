@@ -1,6 +1,9 @@
 package com.sangwon.springlv3backoffice.lecture.controller;
 
-import com.sangwon.springlv3backoffice.lecture.dto.*;
+import com.sangwon.springlv3backoffice.lecture.dto.LectureRegisterDto;
+import com.sangwon.springlv3backoffice.lecture.dto.LectureRegisterResponseDto;
+import com.sangwon.springlv3backoffice.lecture.dto.LectureUpdateDto;
+import com.sangwon.springlv3backoffice.lecture.dto.LectureUpdateResponseDto;
 import com.sangwon.springlv3backoffice.lecture.enums.Category;
 import com.sangwon.springlv3backoffice.lecture.service.LectureService;
 import lombok.RequiredArgsConstructor;

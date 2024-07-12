@@ -1,5 +1,9 @@
-package com.sangwon.springlv3backoffice.auth;
+package com.sangwon.springlv3backoffice.config;
 
+import com.sangwon.springlv3backoffice.auth.JwtAuthenticationFilter;
+import com.sangwon.springlv3backoffice.auth.JwtAuthorizationFilter;
+import com.sangwon.springlv3backoffice.auth.JwtUtil;
+import com.sangwon.springlv3backoffice.auth.UserDetailsServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -60,7 +64,8 @@ public class WebSecurityConfig {
                         .requestMatchers("/login/**").permitAll() // 로그인 관련 요청 허용
                         .requestMatchers("/instructors/**").hasRole("MANAGER") // 강사 관련 요청은 매니저만 접근 허용
                         .requestMatchers("/lectures/**").hasRole("MANAGER") // 강의 관련 요청은 매니저만 접근 허용
-                        .anyRequest().authenticated() // 그 외 모든 요청 인증처리
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                        .anyRequest().permitAll() // 그 외 모든 요청 인증처리
         );
 
         // 필터 관리
