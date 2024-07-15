@@ -24,7 +24,7 @@ public class AdminService {
         if(adminRepository.findByEmail(adminRegisterDto.getEmail()).isPresent()){
             throw new BusinessLogicException(ExceptionCode.EMAIL_ALREADY_EXISTS);
         }
-        // 부서와 권한 확인 로직 추가
+        // 부서와 권한 확인 로직
         if (adminRegisterDto.getRole() == Role.MANAGER &&
                 (adminRegisterDto.getDepartment() != Department.DEVELOPMENT &&
                         adminRegisterDto.getDepartment() != Department.CURRICULUM)) {

@@ -6,7 +6,10 @@ import com.sangwon.springlv3backoffice.exception.BusinessLogicException;
 import com.sangwon.springlv3backoffice.exception.ExceptionCode;
 import com.sangwon.springlv3backoffice.instructor.entity.Instructor;
 import com.sangwon.springlv3backoffice.instructor.repository.InstructorRepository;
-import com.sangwon.springlv3backoffice.lecture.dto.*;
+import com.sangwon.springlv3backoffice.lecture.dto.LectureRegisterDto;
+import com.sangwon.springlv3backoffice.lecture.dto.LectureRegisterResponseDto;
+import com.sangwon.springlv3backoffice.lecture.dto.LectureUpdateDto;
+import com.sangwon.springlv3backoffice.lecture.dto.LectureUpdateResponseDto;
 import com.sangwon.springlv3backoffice.lecture.entity.Lecture;
 import com.sangwon.springlv3backoffice.lecture.enums.Category;
 import com.sangwon.springlv3backoffice.lecture.repository.LectureRepository;
@@ -15,7 +18,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -68,8 +70,7 @@ public class LectureService {
     public List<LectureRegisterResponseDto> getLecturesByCategory(Category category) {
         return lectureRepository.findAll().stream()
                 .filter(lecture -> lecture.getCategory().equals(category))
-                .map(LectureRegisterResponseDto::new)
-                .collect(Collectors.toList());
+                .map(LectureRegisterResponseDto::new).toList();
     }
 
     @Transactional(readOnly = true)
@@ -77,8 +78,7 @@ public class LectureService {
         Instructor instructor = instructorRepository.findById(instructorId)
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.INSTRUCTOR_NOT_FOUND));
         return lectureRepository.findByInstructorOrderByCreatedAtDesc(instructor).stream()
-                .map(LectureRegisterResponseDto::new)
-                .collect(Collectors.toList());
+                .map(LectureRegisterResponseDto::new).toList();
     }
 
 
